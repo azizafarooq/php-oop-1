@@ -19,7 +19,11 @@ class Production {
     }
 
 
-    function __construct($title, $language, $rating){
+    function __construct(
+        string $title,
+        string $language,
+        int $rating
+    ){
         $this->title= $title;
         $this->language = $language;
         $this->rating = $rating;
@@ -27,24 +31,46 @@ class Production {
 
 };
 
-$first_movie = new Production("La vita è bella", "Italiano","9");
-$second_movie = new Production("Inception", "Inglese","8");
-var_dump($first_movie, $second_movie);
+
+class Tv_series extends Production {
+    public $seasons;
+    public $episodes;
+
+    function __construct(
+        string $title,
+        string $language,
+        int $rating,
+        int $seasons, 
+        int $episodes
+    ) {
+        parent::__construct($title, $language, $rating);
+        $this->seasons = $seasons;
+        $this->episodes = $episodes;
+    }
+
+};
+
+class Movies extends Production {
+    public $profit;
+    public $duration;
+
+    function __construct(
+        string $title,
+        string $language,
+        int $rating,
+        int $profit, 
+        int $duration
+    ) {
+        parent::__construct($title, $language, $rating);
+        $this->profit = $profit;
+        $this->duration = $duration;
+    }
+}
+
+$first_movie = new Production("La vita è bella", "Italiano", 8);
+$second_movie = new Production("Inception", "Inglese", 8);
+$new_movie = new Movies("La vita è bella", "Italiano", 9,100000, 2);
+$new_series = new Tv_series("Titolo", "Italiano", 8, 2, 15);
+var_dump($first_movie, $second_movie, $new_movie, $new_series);
 
 ?>
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Production</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  </head>
-  <body>
-    <div class="container mt-5">
-       
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  </body>
-</html>
